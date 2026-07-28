@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maria Lateef — Machine Learning & Embedded Systems Engineer</title>
+<meta name="description" content="Maria Lateef, Computer Engineering graduate building machine learning, generative-AI, embedded, and IoT systems end to end.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FBFAF7;
+    --ink:#15171C;
+    --ink-2:#565A63;
+    --ink-3:#8B8F98;
+    --accent:#2140C4;          /* fountain-pen ink blue */
+    --accent-soft:#E9ECFA;
+    --line:#E7E3DA;
+    --card:#FFFFFF;
+    --display:"Fraunces", Georgia, serif;
+    --sans:"IBM Plex Sans", system-ui, sans-serif;
+    --mono:"IBM Plex Mono", ui-monospace, monospace;
+    --wrap:1080px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);color:var(--ink);
+    font-family:var(--sans);font-size:17px;line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--wrap);margin:0 auto;padding:0 28px}
+
+  /* ---------- nav ---------- */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(251,250,247,.82);backdrop-filter:blur(8px);
+    border-bottom:1px solid transparent;transition:border-color .3s;
+  }
+  nav.scrolled{border-color:var(--line)}
+  .nav-in{max-width:var(--wrap);margin:0 auto;padding:16px 28px;
+    display:flex;align-items:center;justify-content:space-between}
+  .brand{font-family:var(--display);font-weight:600;font-size:1.15rem;letter-spacing:-.01em}
+  .brand span{color:var(--accent)}
+  .nav-links{display:flex;gap:26px;align-items:center}
+  .nav-links a{font-size:.85rem;color:var(--ink-2);transition:color .2s}
+  .nav-links a:hover{color:var(--ink)}
+  .nav-cta{font-family:var(--mono);font-size:.78rem;letter-spacing:.02em;
+    border:1px solid var(--ink);padding:7px 14px;border-radius:2px;transition:.2s}
+  .nav-cta:hover{background:var(--ink);color:var(--paper)}
+  @media(max-width:640px){.nav-links a:not(.nav-cta){display:none}}
+
+  /* ---------- hero ---------- */
+  .hero{position:relative;padding:96px 0 84px;overflow:hidden}
+  .hero::before{ /* faint engineering/ruled paper grid */
+    content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+    background-image:
+      linear-gradient(var(--line) 1px,transparent 1px),
+      linear-gradient(90deg,var(--line) 1px,transparent 1px);
+    background-size:34px 34px;
+    -webkit-mask-image:radial-gradient(ellipse 70% 60% at 30% 30%,#000 0%,transparent 75%);
+    mask-image:radial-gradient(ellipse 70% 60% at 30% 30%,#000 0%,transparent 75%);
+    opacity:.5;
+  }
+  .hero .wrap{position:relative;z-index:1}
+  .eyebrow{font-family:var(--mono);font-size:.8rem;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--accent);margin-bottom:26px;
+    display:flex;align-items:center;gap:12px}
+  .eyebrow::before{content:"";width:26px;height:1px;background:var(--accent)}
+  .hero h1{font-family:var(--display);font-weight:500;
+    font-size:clamp(3.1rem,9vw,6.4rem);line-height:.98;letter-spacing:-.025em;
+    margin-bottom:8px}
+  .sig{display:block;width:min(560px,80%);height:34px;margin:2px 0 30px}
+  .sig path{fill:none;stroke:var(--accent);stroke-width:3.2;stroke-linecap:round;
+    stroke-linejoin:round}
+  .hero .lede{font-size:clamp(1.15rem,2.4vw,1.5rem);line-height:1.5;
+    max-width:33ch;color:var(--ink);font-weight:400;margin-bottom:14px}
+  .hero .sub{color:var(--ink-2);max-width:46ch;margin-bottom:38px}
+  .actions{display:flex;gap:14px;flex-wrap:wrap}
+  .btn{font-family:var(--mono);font-size:.85rem;letter-spacing:.02em;
+    padding:12px 22px;border-radius:2px;transition:.2s;border:1px solid var(--ink)}
+  .btn-primary{background:var(--ink);color:var(--paper)}
+  .btn-primary:hover{background:var(--accent);border-color:var(--accent)}
+  .btn-ghost:hover{background:var(--ink);color:var(--paper)}
+
+  /* ---------- section scaffolding ---------- */
+  section{padding:74px 0}
+  .sec-head{margin-bottom:44px;max-width:60ch}
+  .sec-label{font-family:var(--mono);font-size:.78rem;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--ink-3);margin-bottom:14px;
+    display:flex;align-items:center;gap:12px}
+  .sec-label::before{content:"";width:22px;height:1px;background:var(--ink-3)}
+  .sec-head h2{font-family:var(--display);font-weight:500;
+    font-size:clamp(1.9rem,4vw,2.7rem);line-height:1.08;letter-spacing:-.02em}
+  .sec-head p{color:var(--ink-2);margin-top:14px;max-width:56ch}
+
+  /* ---------- about ---------- */
+  .about{border-top:1px solid var(--line)}
+  .about-grid{display:grid;grid-template-columns:1fr;gap:30px}
+  .about p{font-size:1.12rem;line-height:1.7;max-width:62ch}
+  .facts{display:flex;flex-wrap:wrap;gap:14px 40px;margin-top:8px}
+  .fact .k{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--ink-3)}
+  .fact .v{font-family:var(--display);font-size:1.25rem;font-weight:500}
+
+  /* ---------- work ---------- */
+  .work{border-top:1px solid var(--line)}
+  .feature{border:1px solid var(--line);border-radius:6px;background:var(--card);
+    padding:38px;position:relative;overflow:hidden;transition:.25s;margin-bottom:22px}
+  .feature:hover{border-color:var(--ink);transform:translateY(-3px)}
+  .feature .tag{font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--accent);margin-bottom:16px}
+  .feature h3{font-family:var(--display);font-size:clamp(1.5rem,3vw,2.1rem);
+    font-weight:500;letter-spacing:-.015em;line-height:1.1;margin-bottom:6px}
+  .feature .role{font-family:var(--mono);font-size:.8rem;color:var(--ink-3);margin-bottom:16px}
+  .feature p{color:var(--ink-2);max-width:70ch;margin-bottom:20px}
+  .stack{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+  .chip{font-family:var(--mono);font-size:.72rem;color:var(--ink-2);
+    border:1px solid var(--line);border-radius:2px;padding:4px 9px}
+  .links{display:flex;gap:20px;flex-wrap:wrap}
+  .links a{font-family:var(--mono);font-size:.82rem;color:var(--accent);
+    display:inline-flex;align-items:center;gap:6px;transition:.2s}
+  .links a:hover{color:var(--ink)}
+  .links a .arw{transition:transform .2s}
+  .links a:hover .arw{transform:translateX(3px)}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  .card{border:1px solid var(--line);border-radius:6px;background:var(--card);
+    padding:30px;transition:.25s;display:flex;flex-direction:column}
+  .card:hover{border-color:var(--ink);transform:translateY(-3px)}
+  .card .tag{font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+  .card h3{font-family:var(--display);font-size:1.4rem;font-weight:500;
+    letter-spacing:-.01em;margin-bottom:12px}
+  .card p{color:var(--ink-2);font-size:.97rem;margin-bottom:18px;flex:1}
+  @media(max-width:720px){.grid2{grid-template-columns:1fr}.feature{padding:28px}}
+
+  /* ---------- skills ---------- */
+  .skills{border-top:1px solid var(--line)}
+  .skill-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;
+    border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--line)}
+  .skill-cell{background:var(--paper);padding:26px 28px}
+  .skill-cell h4{font-family:var(--mono);font-size:.76rem;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+  .skill-cell p{color:var(--ink);font-size:.98rem;line-height:1.8}
+  @media(max-width:720px){.skill-grid{grid-template-columns:1fr}}
+
+  /* ---------- contact ---------- */
+  .contact{border-top:1px solid var(--line);text-align:left}
+  .contact h2{font-family:var(--display);font-weight:500;
+    font-size:clamp(2rem,5vw,3.4rem);letter-spacing:-.02em;line-height:1.05;
+    margin-bottom:26px;max-width:16ch}
+  .contact h2 a{color:var(--accent);text-decoration:underline;text-decoration-thickness:1px;
+    text-underline-offset:5px}
+  .contact-row{display:flex;flex-wrap:wrap;gap:14px 30px;font-family:var(--mono);
+    font-size:.9rem;color:var(--ink-2)}
+  .contact-row a{transition:color .2s}
+  .contact-row a:hover{color:var(--accent)}
+
+  footer{border-top:1px solid var(--line);padding:30px 0;color:var(--ink-3);
+    font-family:var(--mono);font-size:.78rem;
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+
+  /* ---------- motion ---------- */
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+  .sig path{stroke-dasharray:1;stroke-dashoffset:1;animation:draw 1.5s ease .35s forwards}
+  @keyframes draw{to{stroke-dashoffset:0}}
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .reveal{opacity:1;transform:none;transition:none}
+    .sig path{animation:none;stroke-dashoffset:0}
+  }
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="nav-in">
+    <a class="brand" href="#top">Maria<span>.</span></a>
+    <div class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+      <a class="nav-cta" href="https://github.com/marialateef123" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="eyebrow">Computer Engineer · Islamabad</div>
+    <h1>Maria Lateef</h1>
+    <svg class="sig" viewBox="0 0 560 34" preserveAspectRatio="none" aria-hidden="true">
+      <path pathLength="1" d="M6 24 C 90 6, 190 30, 286 16 S 470 4, 554 22"/>
+    </svg>
+    <p class="lede">I build machine-learning systems that reach off the screen.</p>
+    <p class="sub">From neural networks and LLM applications to the robots, sensors, and devices that run them. Trained models, soldered boards, and the Python that ties the two together.</p>
+    <div class="actions">
+      <a class="btn btn-primary" href="#work">View work</a>
+      <a class="btn btn-ghost" href="#contact">Get in touch</a>
+    </div>
+  </div>
+</header>
+
+<section class="about" id="about">
+  <div class="wrap about-grid reveal">
+    <div class="sec-label">About</div>
+    <p>I am a Computer Engineering graduate who takes projects the whole way, from training and validating a model to deploying it on real hardware. My work spans deep learning and generative AI, embedded systems, IoT, and robotics, and I like the problems that sit where software meets the physical world.</p>
+    <div class="facts">
+      <div class="fact"><div class="k">Degree</div><div class="v">BS Computer Engineering</div></div>
+      <div class="fact"><div class="k">University</div><div class="v">COMSATS Islamabad</div></div>
+      <div class="fact"><div class="k">CGPA</div><div class="v">3.37</div></div>
+      <div class="fact"><div class="k">Recognition</div><div class="v">3rd · Career Expo</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="work" id="work">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-label">Selected Work</div>
+      <h2>Projects that go from model to machine.</h2>
+    </div>
+
+    <article class="feature reveal">
+      <div class="tag">Flagship · Deep Learning + Hardware</div>
+      <h3>Handwriting Emulator System</h3>
+      <div class="role">Final year project · 3rd place, COMSATS Career Expo</div>
+      <p>An end-to-end system that turns typed or spoken text into realistic human handwriting, physically drawn on paper by a custom-built robotic pen plotter. Fully offline, with six selectable styles. I trained a 1.89M-parameter LSTM-MDN model with Graves-style soft attention on the IAM database, diagnosed and fixed an attention-collapse defect with a kappa-velocity penalty, built a dual-mode OCR pipeline (Tesseract and Microsoft TrOCR) with Whisper voice input, and designed the two-axis plotter hardware and its stroke-to-G-code pipeline.</p>
+      <div class="stack">
+        <span class="chip">PyTorch</span><span class="chip">LSTM-MDN</span><span class="chip">Attention</span>
+        <span class="chip">TrOCR</span><span class="chip">Whisper</span><span class="chip">Arduino / GRBL</span><span class="chip">Streamlit</span>
+      </div>
+      <div class="links">
+        <a href="https://github.com/marialateef123/handwriting-emulator" target="_blank" rel="noopener">View repository <span class="arw">→</span></a>
+      </div>
+    </article>
+
+    <div class="grid2">
+      <article class="card reveal">
+        <div class="tag">Generative AI · RAG</div>
+        <h3>Pakistan Case-Law Assistant</h3>
+        <p>A prototype AI research assistant that retrieves relevant Supreme Court of Pakistan judgments for a typed or spoken question, summarises each with an LLM, and labels which side it supports. Built on a RAG pipeline with sentence-transformer embeddings, a Chroma vector database, and Google Gemini for summaries, side-labelling, and voice transcription.</p>
+        <div class="stack">
+          <span class="chip">RAG</span><span class="chip">LLMs</span><span class="chip">Gemini</span>
+          <span class="chip">Vector DB</span><span class="chip">Streamlit</span>
+        </div>
+        <div class="links">
+          <a href="https://github.com/marialateef123/pak-caselaw-assistant" target="_blank" rel="noopener">View repository <span class="arw">→</span></a>
+        </div>
+      </article>
+
+      <article class="card reveal">
+        <div class="tag">Machine Learning · Security</div>
+        <h3>IoT Attack Detection</h3>
+        <p>A machine-learning system that detects and classifies cyberattacks on IoT devices such as cameras and sensor nodes. I trained, benchmarked, and compared Random Forest, SVM, and Decision Tree classifiers on the IoT-DH dataset, validating accuracy across attack categories. Co-authored a research paper (under review).</p>
+        <div class="stack">
+          <span class="chip">scikit-learn</span><span class="chip">Pandas</span><span class="chip">Classification</span>
+        </div>
+        <div class="links">
+          <a href="https://github.com/marialateef123" target="_blank" rel="noopener">More on GitHub <span class="arw">→</span></a>
+        </div>
+      </article>
+
+      <article class="card reveal">
+        <div class="tag">Embedded · IoT · Robotics</div>
+        <h3>Hardware & IoT</h3>
+        <p>A real-time IoT water-level monitor on ESP32 with remote MQTT alerts and a scalable topic architecture, plus two Arduino competition robots: a sumo bot with IR edge detection and a PID-tuned line-following bot. Firmware, sensors, and control logic, hands on the hardware.</p>
+        <div class="stack">
+          <span class="chip">ESP32</span><span class="chip">MQTT</span><span class="chip">Arduino</span>
+          <span class="chip">PID</span><span class="chip">C++</span>
+        </div>
+        <div class="links">
+          <a href="https://github.com/marialateef123" target="_blank" rel="noopener">More on GitHub <span class="arw">→</span></a>
+        </div>
+      </article>
+
+      <article class="card reveal">
+        <div class="tag">Cloud</div>
+        <h3>Cloud & Infrastructure</h3>
+        <p>Hands-on cloud work through the DecodeLabs internship: provisioning and securing a Linux web server on AWS EC2 from scratch, hosting static sites on S3 and Azure Blob Storage, and configuring everything over SSH from the command line.</p>
+        <div class="stack">
+          <span class="chip">AWS EC2 / S3</span><span class="chip">Azure</span><span class="chip">Linux</span><span class="chip">Nginx</span>
+        </div>
+        <div class="links">
+          <a href="https://github.com/marialateef123/aws-ec2-nginx-webserver" target="_blank" rel="noopener">View repository <span class="arw">→</span></a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="skills" id="skills">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-label">Toolkit</div>
+      <h2>What I work with.</h2>
+    </div>
+    <div class="skill-grid reveal">
+      <div class="skill-cell">
+        <h4>Machine Learning & AI</h4>
+        <p>Python · PyTorch · deep learning · LSTM / RNN · mixture density networks · attention · scikit-learn · OpenCV · NumPy · Pandas</p>
+      </div>
+      <div class="skill-cell">
+        <h4>Generative AI</h4>
+        <p>LLMs · Retrieval-Augmented Generation · Google Gemini · embeddings · vector databases · Hugging Face · prompt design</p>
+      </div>
+      <div class="skill-cell">
+        <h4>Embedded · IoT · Robotics</h4>
+        <p>Arduino · ESP32 · MQTT · GRBL · PID control · ultrasonic & IR sensors · stepper & servo motors · G-code</p>
+      </div>
+      <div class="skill-cell">
+        <h4>Cloud · Data · Languages</h4>
+        <p>AWS (EC2, S3) · Azure · MySQL · Linux · Git · Streamlit · C · C++ · SQL</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap reveal">
+    <div class="sec-label">Contact</div>
+    <h2>Open to roles in AI, ML, and software. <a href="mailto:marialateef656@gmail.com">Let's talk.</a></h2>
+    <div class="contact-row">
+      <a href="mailto:marialateef656@gmail.com">marialateef656@gmail.com</a>
+      <a href="https://linkedin.com/in/marialateef" target="_blank" rel="noopener">linkedin.com/in/marialateef</a>
+      <a href="https://github.com/marialateef123" target="_blank" rel="noopener">github.com/marialateef123</a>
+      <span>Islamabad, Pakistan</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap" style="display:flex;justify-content:space-between;width:100%;flex-wrap:wrap;gap:10px">
+    <span>Maria Lateef</span>
+    <span>Built from scratch · 2026</span>
+  </div>
+</footer>
+
+<script>
+  // nav border on scroll
+  const nav=document.getElementById('nav');
+  addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>8));
+  // reveal on scroll
+  const io=new IntersectionObserver((es)=>{
+    es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})
+  },{threshold:.15});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
